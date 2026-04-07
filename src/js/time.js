@@ -26,8 +26,8 @@ export function initTime() {
   function render() {
     const now = new Date();
     const hour = now.getHours();
-    const timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-    const seconds = now.toLocaleTimeString([], { second: "2-digit" }).slice(-2);
+    const timeStr = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    const seconds = String(now.getSeconds()).padStart(2, "0");
 
     container.innerHTML = `
       <div class="time-display">

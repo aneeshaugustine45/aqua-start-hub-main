@@ -8,6 +8,14 @@
   </head>
   <body>
     <!-- Background -->
+    <script>
+      window.onerror = function(msg, url, line, col, error) {
+        var el = document.createElement('div');
+        el.style.cssText = 'position:fixed;top:0;left:0;right:0;background:red;color:white;z-index:99999;padding:10px;font-size:14px;';
+        el.innerText = 'JS Error: ' + msg + ' (Line: ' + line + ')';
+        document.body.appendChild(el);
+      };
+    </script>
     <img id="bg-img" alt="" class="bg-img" />
     <div class="bg-overlay"></div>
 
@@ -118,6 +126,6 @@
 
     </main>
 
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/main.js?v=2"></script>
   </body>
 </html>
