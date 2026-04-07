@@ -1,26 +1,123 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project" />
-    <meta name="author" content="Lovable" />
-
-    <!-- TODO: Update og:title to match your application name -->
-    <meta property="og:title" content="Lovable App" />
-    <meta property="og:description" content="Lovable Generated Project" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <title>Aqua Start Hub</title>
+    <link rel="stylesheet" href="./src/index.css" />
   </head>
-
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <!-- Background -->
+    <img id="bg-img" alt="" class="bg-img" />
+    <div class="bg-overlay"></div>
+
+    <!-- Settings Button -->
+    <button id="settings-toggle" class="settings-toggle glass">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+    </button>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="settings-modal hidden">
+      <div class="settings-backdrop" id="settings-backdrop"></div>
+      <div class="settings-content glass-strong aqua-shadow">
+        <div class="settings-header">
+          <h2>Settings</h2>
+          <button id="settings-close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+        
+        <div class="settings-group">
+          <label><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> Your Name</label>
+          <input type="text" id="setting-name" placeholder="Enter your name" />
+        </div>
+
+        <div class="settings-group">
+          <label>Theme</label>
+          <div class="theme-buttons">
+            <button id="theme-dark" class="active"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg> Dark</button>
+            <button id="theme-light"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg> Light</button>
+          </div>
+        </div>
+
+        <div class="settings-group">
+          <label><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect><circle cx="9" cy="9" r="2"></circle><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"></path></svg> Background</label>
+          <div class="bg-presets" id="bg-presets-container"></div>
+          <div class="bg-custom-url">
+            <input type="text" id="setting-bg-url" placeholder="Custom image URL..." />
+            <button id="btn-set-bg">Set</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content relative z-10 mx-auto w-full max-w-6xl flex-1 flex-col px-6 py-10">
+      
+      <!-- Time and Greeting -->
+      <div id="time-greeting-container" class="time-greeting text-center"></div>
+
+      <!-- Search Bar -->
+      <div id="search-container" class="search-container mt-8 max-w-2xl mx-auto w-full relative">
+        <form id="search-form" class="search-form flex">
+          <div class="search-engine-selector relative">
+            <button type="button" id="search-engine-toggle" class="glass h-full px-4 rounded-l-2xl border-r flex items-center gap-2">
+              <span id="current-engine-icon" class="engine-icon bg-primary-muted text-primary">G</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-muted"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div id="engine-dropdown" class="engine-dropdown hidden absolute top-full left-0 mt-2 glass-strong rounded-xl py-1 z-50 aqua-shadow min-w-[160px]">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+          <div class="relative flex-1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon absolute"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+            <input type="text" id="search-input" class="search-input glass rounded-r-2xl w-full" placeholder="Search..." autocomplete="off">
+            <kbd class="absolute right-4 shortcut">/</kbd>
+          </div>
+        </form>
+      </div>
+
+      <!-- Widgets Row -->
+      <div class="widgets-row grid grid-cols-1 sm:grid-cols-2 gap-6 mt-8">
+        <!-- Weather Card -->
+        <div class="weather-card glass aqua-shadow rounded-2xl p-5" id="weather-card-container">
+          <h3 class="widget-title mb-3">Weather</h3>
+          <div id="weather-content" class="min-h-[64px]">Loading...</div>
+        </div>
+
+        <!-- Todo List -->
+        <div class="todo-card glass aqua-shadow rounded-2xl p-5 flex flex-col max-h-[350px]">
+          <h3 class="widget-title mb-3">To-Do</h3>
+          <form id="todo-form" class="todo-form flex gap-2 mb-4">
+            <input type="text" id="todo-input" placeholder="Add a task..." class="flex-1 input-bordered rounded-lg bg-input px-3 py-2" autocomplete="off" />
+            <button type="submit" class="bg-primary text-primary-fg rounded-lg w-9 h-9 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+            </button>
+          </form>
+          <div id="todo-list" class="todo-list space-y-2 overflow-y-auto pr-1 flex-1">
+            <!-- Injected by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Favorites Grid -->
+      <div class="favorites-card glass aqua-shadow rounded-2xl p-5 mt-6">
+        <h3 class="widget-title mb-4">Favorites</h3>
+        <div id="favorites-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+          <!-- Injected by JS -->
+        </div>
+        <div id="favorites-add-form" class="hidden mt-4 flex flex-col gap-2">
+          <input type="text" id="fav-label" placeholder="Label" class="input-bordered rounded-lg bg-input px-3 py-2" autocomplete="off" />
+          <input type="text" id="fav-url" placeholder="URL (e.g. google.com)" class="input-bordered rounded-lg bg-input px-3 py-2" autocomplete="off" />
+          <div class="flex gap-2">
+            <button id="btn-fav-add" class="flex-1 bg-primary text-primary-fg rounded-lg py-2 font-medium">Add</button>
+            <button id="btn-fav-cancel" class="px-4 bg-secondary text-secondary-fg rounded-lg py-2">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>
